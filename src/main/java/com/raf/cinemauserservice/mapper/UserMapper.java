@@ -34,6 +34,7 @@ public class UserMapper {
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
         user.setRole(roleRepository.findRoleByName("ROLE_USER").get());
+        user.setNumberOfReservations(0);
         //Set address
         Address address = new Address();
         address.setCountry(userCreateDto.getAddress().getCountry());

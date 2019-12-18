@@ -1,9 +1,6 @@
 package com.raf.cinemauserservice.controller;
 
-import com.raf.cinemauserservice.dto.TokenRequestDto;
-import com.raf.cinemauserservice.dto.TokenResponseDto;
-import com.raf.cinemauserservice.dto.UserCreateDto;
-import com.raf.cinemauserservice.dto.UserDto;
+import com.raf.cinemauserservice.dto.*;
 import com.raf.cinemauserservice.secutiry.CheckSecurity;
 import com.raf.cinemauserservice.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,12 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -46,6 +38,11 @@ public class UserController {
                                                      Pageable pageable) {
 
         return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/discount")
+    public ResponseEntity<DiscountDto> getDiscount(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(userService.findDiscount(id), HttpStatus.OK);
     }
 
     @ApiOperation(value = "Register user")
